@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dock CountDown Timer</title>
+		<link rel="stylesheet" href="appstyles.css" />
+	</head>
+	<body id="dockBody">
+		<div id="mainPanel">
+			<div id="timeDisplay">
+				<span class="timeDisplayAll" id="days"></span>
+				<span class="timeDisplayAll" id="colonDH"></span>
+				<div class="timeDisplayAll" id="hours"></div>
+				<div class="timeDisplayAll" id="colonHM"></div>
+				<div class="timeDisplayAll" id="minutes"></div>
+				<div class="timeDisplayAll" id="colonMS"></div>
+				<div class="timeDisplayAll" id="seconds"></div>
+			</div>
+			<div id="mainPanelForm">
+				<div class="drawLine"></div>
+				<div id="allMainButtons">
+					<button class="mainTopSettingsButtons" id="buttonStart" onclick="startButton()">START</button>
+					<button class="mainTopSettingsButtons" id="buttonStop" onclick="stopButton()">STOP</button>
+					<div id="midTopsection"></div>
+					<button class="mainTopSettingsButtonsMoreWidth" id="dsdsds" onclick="resetButtonNewHour()">RESET NEW HOUR</button>
+					<div id="midTopsection"></div>
+					<button class="mainTopSettingsButtons" id="buttonReset" onclick="resetButton()">RESET</button>
+				</div>
+				<div class="drawLine"></div>
+				<div id="mainDisplay">
+					<div class="inputTime">
+						<div class="timeInputName">Days:</div>
+						<div class="inputNumber">
+							<input type="number" class="inputNum" id="inputDays" onclick="inputDaysNum()" onchange="inputDaysChange()" />
+						</div>
+					</div>
+					<div class="inputTime">
+						<div class="timeInputName">Hours:</div>
+						<span class="inputNumber">
+							<input type="number" class="inputNum" id="inputHours" onclick="inputHoursNum()" onchange="inputHoursChange()" />
+						</span>
+					</div>
+					<div class="inputTime">
+						<div class="timeInputName">Minutes:</div>
+						<span class="inputNumber">
+							<input type="number" class="inputNum" id="inputMinutes" onclick="inputMinutesNum()" onchange="inputMinutesChange()" />
+						</span>
+					</div>
+					<div class="inputTime">
+						<div class="timeInputName">Seconds:</div>
+						<span class="inputNumber">
+							<input type="number" class="inputNum" id="inputSeconds" onclick="inputSecondsNum()" onchange="inputSecondsChange()" />
+						</span>
+					</div>
+					<div class="inputMess">
+						<label class="checkboxPosition" id="positionBeforeTime"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxBeforeTime" onclick="messBeforeCheckbox()" />Message Before Time: </label>
+					</div>
+					<div class="messBox">
+						<input type="text" class="inputMessText" id="inputBeforeTime" placeholder="No Text" onclick="messBeforeInput()" onchange="messBeforeInputChange()" />
+					</div>
+					<div class="inputMess">
+						<label class="checkboxPosition" id="positionAfterTime"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxAfterTime" onclick="messAfterCheckbox()" />Message After Time: </label>
+					</div>
+					<div class="messBox">
+						<input type="text" class="inputMessText" id="inputAfterTime" placeholder="No Text" onclick="messAfterInput()" onchange="messAfterInputChange()" />
+					</div>
+					<div class="inputMess">
+						<label class="checkboxPosition" id="positionFinishMessage"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxFinishMess" onclick="messFinishCheckbox()" />Message At Finish: </label>
+					</div>
+					<div class="messBox">
+						<input type="text" class="inputMessText" id="inputFinishMess" placeholder="No Text" onclick="messFinishInput()" onchange="messFinishInputChange()" />
+					</div>
+					<div id="offOK"></div>
+					<div class="inputTime">
+						<label class="checkboxPosition" id="positionOffSec"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxOffSec" onclick="offSecCheckbox()" />Off After Sec: </label>
+						<div class="inputNumber">
+							<input type="number" class="inputNum" id="inputOffNum" onclick="messOffSec()" onchange="messOffSecInputChange()" />
+						</div>
+					</div>
+					<label class="checkboxPosition" id="totalROunds"> Total rounds: </label>
+					<button onclick="decreaseTotalRounds()">-</button>
+					<br>
+					<button onclick="increaseTotalRounds()">+</button>
+					<br>
+					<br>
+					<button onclick="resetRound()">reset round</button>
+					<div class="inputTime">
+						<label class="checkboxPosition" id="positionAllOffOn"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxAllOffOn" onclick="allOffOnCheckbox()" />All Display Off/On </label>
+						<div class="inputNumber"></div>
+					</div>
+					<div class="inputTime">
+						<label class="checkboxPosition" id="positionCancelFinish"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxCancelFinish" onclick="cancelFinishCheckbox()" />Cancel Finish </label>
+						<div class="inputNumber"></div>
+					</div>
+				</div>
+			</div>
+			<div id="mainSettingsTopDisplay">
+				<div id="mainSettingsButtonsTab">
+					<button class="mainTopSettingsButtons" id="buttonFontMain" onclick="displayFont()">FONT</button>
+					<button class="mainTopSettingsButtons" id="buttonColorMain" onclick="displayColor()">COLOR</button>
+				</div>
+			</div>
+			<div id="fontSettingsDisplay">
+				<label class="settingsLabel" for="url"><a id="googleFontLink" target="_blank" href="https://fonts.google.com/">Enter a Google Font https:// URL:</a></label>
+				<div>
+					<textarea style="resize: none" spellcheck="false" id="url" name="url" cols="27" rows="4" placeholder="https://fonts.googleapis.com/***" onclick="fontTextArea()"></textarea>
+				</div>
+				<label class="settingsLabel" id="settingsLabelFontName" for="url">Enter the Font Family Name</label>
+				<input type="text" class="fontBox" id="fontName" placeholder="Enter the Font Name" onclick="fontNameBox()"messSize = />
+				<div id="fontApplySettingsButton">
+					<input type="button" value="APPLY" class="buttonFontSettings" id="applyFontButton" onclick="applyFontUrl()" />
+					<input type="button" value="RESET" class="buttonFontSettings" id="resetFontUrlButton" onclick="resetFontUrl()" />
+				</div>
+				<div class="drawLine"></div>
+				<div class="fontSize">
+					<label class="settingsLabel" id="settingsLabelTimeSize" for="fontTimeSizeInput">Time Size</label>
+					<input type="number" class="sizeBox" name="fontSize" id="timeSize" placeholder="Size" min="4" max="200" />
+					<div class="slideContainer">
+						<input type="range" min="4" max="500" name="slideTimeSize" class="slider" id="slideTimeSize" oninput="sliderInputTime()" />
+					</div>
+				</div>
+				<div class="fontSize">
+					<label class="settingsLabel" id="settingsLabelMessSize" for="fontMessSizeInput">Message Size</label>
+					<input type="number" class="sizeBox" name="fontSize" id="messSize" placeholder="Size" min="4" max="200" />
+					<div class="slideContainer">
+						<input type="range" min="4" max="500" name="slideMessSize" class="slider" id="slideMessSize" oninput="sliderInputMess()" />
+					</div>
+				</div>
+				<div id="resetFontSettingsButton">
+					<input type="button" value="RESET" id="resetFontsSizeButton" onclick="resetFontSize()" />
+				</div>
+			</div>
+			<div id="colorSettingsDisplay">
+				<div class="colorLine">
+					<label class="colorLabel" for="timerTextColor">Time Color: </label>
+					<div class="colorBox">
+						<input class="color" type="Color" id="timerColor" oninput="colorTime()" on />
+					</div>
+				</div>
+				<div class="colorLine">
+					<label class="colorLabel" for="messageBATextColor">Message B/A Time Color: </label>
+					<div class="colorBox">
+						<input class="color" type="Color" id="messageBATextColor" oninput="colorMess()" />
+					</div>
+				</div>
+				<div class="colorLineSlider" id="shadowSettings">
+					<div class="colorTitle">
+						<div class="title" id="messageFTitle">Message At Finish</div>
+					</div>
+					<label class="checkboxPosition" id="positionFinish"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxFinish" onclick="colorFinishHS()" />Preview: </label>
+					<span class="colorBox">
+						<input class="color" type="Color" id="finishColor" oninput="colorFinish()" />
+					</span>
+					<input type="number" class="sizeBox" name="finishSize" id="finishFontSize" placeholder="Size" min="4" max="200" />
+					<div class="slideContainer" id="finishSlider">
+						<input type="range" min="4" max="500" name="slideFinishSize" class="slider" id="finishFontSliderSize" oninput="finishSliderWidthSize()" />
+					</div>
+				</div>
+				<div class="colorLineSlider" id="shadowSettings">
+					<label class="checkboxPosition" id="positionShadow"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxShadow" onclick="colorShadowHS()" />Shadow: </label>
+					<span class="colorBox">
+						<input class="color" type="Color" id="shadowColor" oninput="colorShadow()" />
+					</span>
+					<input type="number" class="sizeBox" name="shadowSize" id="shadowSize" placeholder="Size" min="0" max="40" />
+					<div class="slideContainer" id="shadowSlider">
+						<input type="range" min="0" max="40" name="slideShadowSize" class="slider" id="slideShadowSize" oninput="shadowSliderWidthSize()" />
+					</div>
+				</div>
+				<div class="colorLineSlider" id="outlineSettings">
+					<label class="checkboxPosition" id="positionOutline"> <input type="checkbox" class="checkboxPositionVertical" id="checkboxOutline" onclick="colorOutlineHS()" />Text Outline: </label>
+					<span class="colorBox">
+						<input class="color" type="Color" id="outlineColor" oninput="colorOutline()" />
+					</span>
+					<input type="number" class="sizeBox" name="outlineSize" id="outlineSize" placeholder="Size" min="0" max="5" />
+					<div class="slideContainer" id="shadowSlider">
+						<input type="range" min="0" max="5" name="slideShadowSize" class="slider" id="slideOutlineSize" oninput="outlineSliderWidthSize()" />
+					</div>
+				</div>
+				<div id="colorSettingsButtons">
+					<button class="buttonColorSettings" id="resetColor" onclick="resetColors()">RESET</button>
+				</div>
+				<div id="allAlignButtons">
+					<img class="alignButtons" id="left" alt="L" onclick="hAlignButton(1)" />
+					<img class="alignButtons" id="centre" alt="C" onclick="hAlignButton(2)" />
+					<img class="alignButtons" id="right" alt="R" onclick="hAlignButton(3)" />
+					<img class="alignButtons" id="top" alt="T" onclick="vAlignButton(1)" />
+					<img class="alignButtons" id="middle" alt="M" onclick="vAlignButton(2)" />
+					<img class="alignButtons" id="bottom" alt="B" onclick="vAlignButton(3)" />
+				</div>
+			</div>
+			<div id="settingsButtonDisplay">
+				<div class="drawLine"></div>
+				<button id="settingsButton" onclick="settings()">SETTINGS</button>
+			</div>
+		</div>
+		<script src="appdock.js"></script>
+	</body>
+</html>

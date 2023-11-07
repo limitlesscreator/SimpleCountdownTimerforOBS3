@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="appstyles.css" />
+		<link id="displayFont" rel="stylesheet" type="text/css" />
+	</head>
+	<body id="sourceBody">
+		<div id="browserTimeContainer">
+			<div id="browserContainer">
+				<div class="browserMessDisplay" id="browserMessBT"></div>
+				<div class="browserTimeDisplay" id="days"></div>
+				<div class="browserTimeDisplay" id="colonDH"></div>
+				<div class="browserTimeDisplay" id="hours"></div>
+				<div class="browserTimeDisplay" id="colonHM"></div>
+				<div class="browserTimeDisplay" id="minutes"></div>
+				<div class="browserTimeDisplay" id="colonMS"></div>
+				<div class="browserTimeDisplay" id="seconds"></div>
+				<div class="browserMessDisplay" id="browserMessAT"></div>
+				<div class="browserMessDisplay" id="browserMessF"></div>
+			</div>
+		</div>
+		<script>
+			const allFont = document.querySelector('#displayFont')
+			const browserTimeContainer = document.querySelector('#browserTimeContainer')
+			const browserTimeDisplay = document.querySelectorAll('.browserTimeDisplay')
+			const browserMessDisplay = document.querySelectorAll('.browserMessDisplay')
+			const bodySource = document.querySelector('#sourceBody')
+			const browserMessBT = document.querySelector('#browserMessBT')
+			const days = document.querySelector('#days')
+			const colonDH = document.querySelector('#colonDH')
+			const hours = document.querySelector('#hours')
+			const colonHM = document.querySelector('#colonHM')
+			const minutes = document.querySelector('#minutes')
+			const colonMS = document.querySelector('#colonMS')
+			const seconds = document.querySelector('#seconds')
+			const browserMessAT = document.querySelector('#browserMessAT')
+			const browserMessF = document.querySelector('#browserMessF')
+			let tag = 'storage:',
+				tag2 = 'display:',
+				secFinish,
+				secFinishHS,
+				timeColor = '#ffffff',
+				messBT = '',
+				messBTHS = false,
+				messBTcolor = '#ffffff',
+				messAT = '',
+				messATHS = false,
+				messATcolor = '#ffffff',
+				messF = '',
+				messFHS = false,
+				messFcolor = '#ffffff',
+				zeroIsReached = false,
+				fontUrl = 'https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap',
+				fontName = 'Nunito',
+				timeSize = 100,
+				messSize = 80,
+				finishSize = 80,
+				fPreview = 80,
+				shadowWidth = 20,
+				outlineColor = '#000000',
+				outlineYN = true,
+				outlineWidth = 5,
+				year = 0,
+				month = 0,
+				day = 0,
+				hour = 0,
+				min = 0,
+				sec = 00,
+				timeHS = 3,
+				hAlign = 'left',
+				vAlign = 'flex-start',
+				textColor = '#ffffff',
+				shadowYN = true,
+				shadowColor = '#000000',
+				storageInfo,
+				browserD,
+				message,
+				secFinishTime,
+				displayNone,
+				displayNoneFinish,
+				allOffOn,
+				cancelFinish = false,
+				finishOn = false,
+				settingsChoice,
+				finishRun = false
+			const channel = new BroadcastChannel('obsTimer')
+			if (tag in localStorage && tag2 in localStorage) getSavedSettings()
+			else defaultSettings()
+			zeroIsReached = false
+			displayOnScreen()
+			channel.onmessage = (ev) => {
+				message = ev.data
+				storageInfo = message[0]
+				browserD = message[1]
+				applyMessage()
+				displayOnScreen()
+			}
+			function displayOnScreen() {
+				allFont.setAttribute('href', fontUrl)
+				browserTimeContainer.style.justifyContent = hAlign
+				browserTimeContainer.style.alignItems = vAlign
+				browserTimeContainer.style.fontFamily = fontName
+				bodySource.style.justifyContent = vAlign
+				browserTimeDisplay.forEach((browserTimeDisplay) => {
+					browserTimeDisplay.style.fontSize = timeSize + 'px'
+				})
+				browserMessBT.style.fontSize = messSize + 'px'
+				browserMessAT.style.fontSize = messSize + 'px'
+				browserMessF.style.fontSize = finishSize + 'px'
+				browserTimeDisplay.forEach((browserTimeDisplay) => {
+					browserTimeDisplay.style.color = timeColor
+				})
+				browserMessBT.style.color = messBTcolor
+				browserMessAT.style.color = messBTcolor
+				browserMessF.style.color = messFcolor
+				browserTimeContainer.style.display = 'flex'
+				if (allOffOn) {
+					browserTimeContainer.style.display = 'none'
+				} else browserTimeContainer.style.display = 'flex'
+				if (zeroIsReached) {
+					finishRun = true
+					finish()
+					return
+				}
+				if (cancelFinish) finishRun = false
+				if (finishRun) {
+					finish()
+					return
+				}
+				if (messBTHS) {
+					browserMessBT.style.display = 'inline-block'
+					browserMessBT.innerHTML = messBT
+				} else browserMessBT.style.display = 'none'
+				if (messATHS) {
+					browserMessAT.style.display = 'inline-block'
+					browserMessAT.innerHTML = messAT
+				} else browserMessAT.style.display = 'none'
+				browserTimeContainer.style.textShadow = ''
+				if (shadowYN) {
+					browserTimeContainer.style.textShadow = '0px 0px ' + shadowWidth + 'px' + shadowColor
+				}
+				if (outlineYN) {
+					negOutline = -outlineWidth
+					browserTimeContainer.style.textShadow = negOutline + 'px 0 ' + outlineColor + ',0 ' + outlineWidth + 'px ' + outlineColor + ',' + outlineWidth + 'px' + ' 0 ' + outlineColor + ', 0 ' + negOutline + 'px ' + outlineColor
+				}
+				if (fPreview) {
+					browserTimeDisplay.forEach((browserTimeDisplay) => {
+						browserTimeDisplay.style.display = 'none'
+					})
+					browserMessBT.style.display = 'none'
+					browserMessAT.style.display = 'none'
+					browserMessF.style.display = 'inline-block'
+					browserMessF.innerHTML = messF
+					return
+				} else browserMessF.style.display = 'none'
+				if (timeHS == 1) {
+					days.style.display = 'inline-block'
+					colonDH.style.display = 'inline-block'
+					hours.style.display = 'inline-block'
+					colonHM.style.display = 'inline-block'
+					minutes.style.display = 'inline-block'
+					colonMS.style.display = 'inline-block'
+					seconds.style.display = 'inline-block'
+					days.innerHTML = day
+					colonDH.innerHTML = ':'
+					hours.innerHTML = hour
+					colonHM.innerHTML = ':'
+					minutes.innerHTML = min
+					colonMS.innerHTML = ':'
+					if (sec > 9) seconds.innerHTML = sec
+					else seconds.innerHTML = ('0' + sec).slice(-2)
+				}
+				if (timeHS == 2) {
+					days.style.display = 'none'
+					colonDH.style.display = 'none'
+					hours.style.display = 'inline-block'
+					colonHM.style.display = 'inline-block'
+					minutes.style.display = 'inline-block'
+					colonMS.style.display = 'inline-block'
+					seconds.style.display = 'inline-block'
+					hours.innerHTML = hour
+					colonHM.innerHTML = ':'
+					minutes.innerHTML = min
+					colonMS.innerHTML = ':'
+					if (sec > 9) seconds.innerHTML = sec
+					else seconds.innerHTML = ('0' + sec).slice(-2)
+				}
+				if (timeHS == 3) {
+					days.style.display = 'none'
+					colonDH.style.display = 'none'
+					hours.style.display = 'none'
+					colonHM.style.display = 'none'
+					minutes.style.display = 'inline-block'
+					colonMS.style.display = 'inline-block'
+					seconds.style.display = 'inline-block'
+					minutes.innerHTML = min
+					colonMS.innerHTML = ':'
+					if (sec > 9) seconds.innerHTML = sec
+					else seconds.innerHTML = ('0' + sec).slice(-2)
+				}
+				if (timeHS == 4) {
+					days.style.display = 'none'
+					colonDH.style.display = 'none'
+					hours.style.display = 'none'
+					colonHM.style.display = 'none'
+					minutes.style.display = 'none'
+					colonMS.style.display = 'none'
+					seconds.style.display = 'inline-block'
+					if (sec > 9) seconds.innerHTML = sec
+					else seconds.innerHTML = ('0' + sec).slice(-2)
+				}
+				function finish() {
+					if (messFHS) {
+						browserTimeDisplay.forEach((browserTimeDisplay) => {
+							browserTimeDisplay.style.display = 'none'
+						})
+						browserMessBT.style.display = 'none'
+						browserMessAT.style.display = 'none'
+						browserMessF.style.display = 'inline-block'
+						browserMessF.innerHTML = messF
+					} else {
+						browserTimeContainer.style.display = 'none'
+						cancelFinish = true
+					}
+					if (messFHS && secFinishHS) {
+						browserTimeDisplay.forEach((browserTimeDisplay) => {
+							browserTimeDisplay.style.display = 'none'
+						})
+						browserMessBT.style.display = 'none'
+						browserMessAT.style.display = 'none'
+						browserMessF.style.display = 'inline-block'
+						secFinish = secFinish * 1000
+						setTimeout(() => {
+							cancelFinish = true
+							zeroIsReached = false
+							displayOnScreen()
+						}, secFinish)
+					}
+					return
+				}
+			}
+			function defaultSettings() {
+				fontUrl = 'https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap'
+				fontName = 'Nunito'
+				timeSize = 100
+				messSize = 100
+				hAlign = 'left'
+				vAlign = 'flex-start'
+				shadowColor = '#000000'
+				shadowYN = true
+				timeColor = '#ffffff'
+				messBTcolor = '#ffffff'
+				messATcolor = '#ffffff'
+				messFcolor = '#ffffff'
+				finishSize = 100
+				fPreview = false
+				shadowWidth = 20
+				borderColor = '#000000'
+				borderYN = true
+				borderWidth = 5
+				settingsChoice = 'font'
+				cancelFinish = false
+				zeroIsReached = false
+				secFinish = 0
+				year = 0
+				month = 0
+				day = 0
+				hour = 0
+				min = 0
+				sec = 0
+				timeHS = 3
+				messBT = ''
+				messBTHS = false
+				messAT = ''
+				messATHS = false
+				messF = ''
+				messFHS = false
+				secFinishHS = false
+				allOffOn = false
+				storageInfo = [fontUrl, fontName, timeSize, messSize, hAlign, vAlign, shadowColor, shadowYN, timeColor, messBTcolor, messATcolor, messFcolor, finishSize, fPreview, shadowWidth, outlineColor, outlineYN, outlineWidth, settingsChoice, cancelFinish]
+				browserD = [zeroIsReached, secFinish, year, month, day, hour, min, sec, timeHS, messBT, messBTHS, messAT, messATHS, messF, messFHS, secFinishHS]
+			}
+			function applyMessage() {
+				fontUrl = storageInfo[0]
+				fontName = storageInfo[1]
+				timeSize = storageInfo[2]
+				messSize = storageInfo[3]
+				hAlign = storageInfo[4]
+				vAlign = storageInfo[5]
+				shadowColor = storageInfo[6]
+				shadowYN = storageInfo[7]
+				timeColor = storageInfo[8]
+				messBTcolor = storageInfo[9]
+				messATcolor = storageInfo[10]
+				messFcolor = storageInfo[11]
+				finishSize = storageInfo[12]
+				fPreview = storageInfo[13]
+				shadowWidth = storageInfo[14]
+				outlineColor = storageInfo[15]
+				outlineYN = storageInfo[16]
+				outlineWidth = storageInfo[17]
+				settingsChoice = storageInfo[18]
+				cancelFinish = storageInfo[19]
+				zeroIsReached = browserD[0]
+				secFinish = browserD[1]
+				year = browserD[2]
+				month = browserD[3]
+				day = browserD[4]
+				hour = browserD[5]
+				min = browserD[6]
+				sec = browserD[7]
+				timeHS = browserD[8]
+				messBT = browserD[9]
+				messBTHS = browserD[10]
+				messAT = browserD[11]
+				messATHS = browserD[12]
+				messF = browserD[13]
+				messFHS = browserD[14]
+				secFinishHS = browserD[15]
+				allOffOn = browserD[16]
+			}
+			function getSavedSettings() {
+				storageInfo = JSON.parse(window.localStorage.getItem(tag))
+				browserD = JSON.parse(window.localStorage.getItem(tag2))
+				fontUrl = storageInfo[0]
+				fontName = storageInfo[1]
+				timeSize = storageInfo[2]
+				messSize = storageInfo[3]
+				hAlign = storageInfo[4]
+				vAlign = storageInfo[5]
+				shadowColor = storageInfo[6]
+				shadowYN = storageInfo[7]
+				timeColor = storageInfo[8]
+				messBTcolor = storageInfo[9]
+				messATcolor = storageInfo[10]
+				messFcolor = storageInfo[11]
+				finishSize = storageInfo[12]
+				fPreview = storageInfo[13]
+				shadowWidth = storageInfo[14]
+				outlineColor = storageInfo[15]
+				outlineYN = storageInfo[16]
+				outlineWidth = storageInfo[17]
+				settingsChoice = storageInfo[18]
+				cancelFinish = storageInfo[19]
+				zeroIsReached = browserD[0]
+				secFinish = browserD[1]
+				year = browserD[2]
+				month = browserD[3]
+				day = browserD[4]
+				hour = browserD[5]
+				min = browserD[6]
+				sec = browserD[7]
+				timeHS = browserD[8]
+				messBT = browserD[9]
+				messBTHS = browserD[10]
+				messAT = browserD[11]
+				messATHS = browserD[12]
+				messF = browserD[13]
+				messFHS = browserD[14]
+				secFinishHS = browserD[15]
+				allOffOn = browserD[16]
+			}
+		</script>
+	</body>
+</html>

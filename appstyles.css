@@ -1,0 +1,685 @@
+#sourceBody {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#browserTimeContainer {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+#browserContainer {
+	display: flex;
+	margin: 0px;
+	border: 0px;
+	padding: 10px;
+	align-items: baseline;
+}
+.browserMessDisplay {
+	display: inline-block;
+	font-size: 50px;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+.browserTimeDisplay {
+	display: inline-block;
+	font-size: 50px;
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+}
+.browserMessDisplay {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#dockBody {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	height: 100vh;
+	max-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: rgb(31, 30, 31);
+}
+#timeDisplay {
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 5px;
+}
+.timeDisplayAll {
+	height: 47px;
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	align-items: center;
+}
+#mainDisplay {
+	margin-top: 5px;
+}
+.slideContainer {
+	height: 19px;
+}
+#settings {
+	height: 15px;
+	width: 15px;
+}
+#mainSettingsTopDisplay {
+	width: 100%;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#mainPanel {
+	margin-top: 25px;
+	background-color: rgb(58, 57, 58);
+	padding: 5px;
+	border-radius: 2px;
+	width: 100%;
+	max-width: 235px;
+}
+#fontSettingsDisplay {
+	width: 100%;
+	color: white;
+	background-color: rgb(58, 57, 58);
+	text-align: center;
+	height: 351px;
+}
+#colorSettingsDisplay {
+	display: flex;
+	width: 100%;
+	color: white;
+	background-color: rgb(58, 57, 58);
+	text-align: center;
+	height: 351px;
+}
+.mainTopSettingsButtons {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1.9px;
+	margin: 0px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 115px;
+}
+.mainTopSettingsButtonsMoreWidth {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1.9px;
+	margin: 0px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	min-width: 115px;
+}
+#settingsButtonDisplay {
+	text-align: center;
+}
+#settingsButton {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 1.5px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 120px;
+	margin-top: 5px;
+}
+.settingsLabel {
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 18px;
+	text-align: center;
+}
+.fontSize {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.slidecontainer {
+	width: 100%;
+}
+.slider {
+	-webkit-appearance: none; /* Override default CSS styles */
+	appearance: none;
+	width: 100%; /* Full-width */
+	height: 10px;
+	border-radius: 2px; /* Specified height */
+	background: rgb(31, 30, 31); /* Grey background */
+	outline: none; /* Remove outline */
+	opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+	-webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+	transition: opacity 0.2s;
+}
+.slider:hover {
+	opacity: 1; /* Fully shown on mouse-over */
+}
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none; /* Override default look */
+	appearance: none;
+	width: 15px; /* Set a specific slider handle width */
+	height: 15px;
+	border-radius: 50%; /* Slider handle height */
+	background: green; /* Green background */
+	cursor: pointer; /* Cursor on hover */
+}
+.slider::-moz-range-thumb {
+	width: 15px; /* Set a specific slider handle width */
+	height: 15px;
+	border-radius: 50%; /* Slider handle height */
+	background: blue; /* Green background */
+	cursor: pointer; /* Cursor on hover */
+}
+textarea {
+	padding: 0px;
+}
+.colorLineSlider {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#url {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	width: 100%;
+	height: 61px;
+	background-color: rgb(31, 30, 31);
+}
+.fontBox {
+	width: 100%;
+	text-align: center;
+	height: 20px;
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+}
+#fontName {
+	margin-bottom: 2px;
+}
+.sizeBox {
+	width: 100%;
+	text-align: center;
+	height: 20px;
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+	text-indent: 17px;
+}
+#fontTimeSizeInput {
+	text-indent: 11px;
+}
+#fontMessSizeInput {
+	text-indent: 11px;
+}
+#resetFontSettingsButton {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#fontApplySettingsButton {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+#browserJustTime {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.buttonFontSettings {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1px;
+	margin: 0px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 115px;
+}
+#resetFontsSizeButton {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1px;
+	margin: 0px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 120px;
+}
+.buttonColorSettings {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1.5px;
+	margin: 0px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 120px;
+}
+#colorSettingsButtons {
+	display: block;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	padding: 0px;
+	border: 0px;
+	height: 30px;
+}
+#allAlignButtons {
+	margin-top: 10px;
+}
+input[type='color'] {
+	/* -webkit-appearance: none; */
+	border: 0px;
+	width: 30px;
+	height: 16px;
+}
+input[type='color']::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type='color']::-webkit-color-swatch {
+	border: none;
+}
+.colorBox {
+	display: flex;
+	flex-basis: 70px;
+	vertical-align: bottom;
+	float: right;
+	width: 45px;
+	height: 16px;
+}
+.colorLine {
+	display: block;
+	height: 25px;
+	width: 100%;
+}
+.colorLabel {
+	display: block;
+	width: 170px;
+	height: 16px;
+	text-align: left;
+	float: left;
+}
+#allMainButtons {
+	width: auto;
+	height: auto;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#midTopsection {
+	margin-top: 10px;
+}
+.colorpick-eyedropper-input-trigger {
+	padding: 0px;
+}
+img {
+	padding: 0px;
+}
+.button {
+	background-color: rgb(31, 30, 31);
+	border-radius: 2%;
+	border: 0px;
+	padding: 0px;
+	padding-top: 1.5px;
+	margin: 0px;
+	margin: 5px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 19px;
+	height: 25px;
+	width: 90px;
+}
+#buttonReset {
+	margin-top: 0px;
+}
+.inputTime {
+	color: white;
+	font-size: 19px;
+	text-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	height: 23px;
+	margin-bottom: 5px;
+	padding-bottom: 1px;
+}
+.inputMess {
+	color: white;
+	font-size: 19px;
+	text-align: center;
+	vertical-align: bottom;
+	width: 100%;
+	height: 23px;
+	margin-top: 10px;
+	padding-bottom: 1px;
+}
+.inputNum {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+	font-size: 19px;
+	width: 75px;
+	height: 22px;
+	text-indent: 15px;
+	text-align: center;
+}
+#inputOffNum {
+	width: 65px;
+}
+.messBox {
+	width: 100%;
+	height: 24px;
+	margin-bottom: 4px;
+}
+.inputNumber {
+	float: right;
+}
+.timeInputName {
+	float: left;
+}
+input {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+#mainHideShow {
+	color: white;
+	font-size: 19px;
+	text-align: center;
+	margin-bottom: 4px;
+}
+.labelHideShow {
+	display: inline-block;
+	width: 67px;
+	text-align: left;
+}
+.checkboxPositionVertical {
+	display: inline-flex;
+	align-items: baseline;
+	vertical-align: bottom;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+#positionDays {
+	display: flex;
+	vertical-align: middle;
+}
+#positionHours {
+	display: flex;
+	vertical-align: middle;
+}
+#positionMinutes {
+	display: flex;
+	vertical-align: middle;
+}
+#positionSeconds {
+	display: flex;
+	vertical-align: middle;
+}
+#positionFinishMessage {
+	display: flex;
+	vertical-align: middle;
+}
+#positionBeforeTime {
+	display: flex;
+	vertical-align: middle;
+}
+#positionAfterTime {
+	display: flex;
+	vertical-align: middle;
+}
+#positionOffSec {
+	display: flex;
+	vertical-align: middle;
+}
+#positionAllOffOn {
+	display: flex;
+	vertical-align: middle;
+}
+#positionCancelFinish {
+	display: flex;
+	vertical-align: middle;
+}
+#positionShadow {
+	display: inline-flex;
+	align-items: center;
+	height: 18px;
+}
+#positionOutline {
+	display: flex;
+	align-items: center;
+	height: 18px;
+}
+#positionFinish {
+	display: flex;
+	align-items: center;
+	height: 18px;
+}
+
+#checkboxLabelDays {
+	display: flex;
+	vertical-align: bottom;
+}
+.checkboxPosition {
+	display: flex;
+	float: left;
+	height: 23px;
+}
+.okButton {
+	display: block;
+	float: right;
+	border: 0px;
+	padding-top: 0px;
+	border-radius: 2%;
+	color: white;
+	font-size: 19px;
+	background-color: rgb(31, 30, 31);
+	width: 40px;
+	height: 22px;
+}
+#offOK {
+	height: 5px;
+}
+#inputDuringMessage {
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+.inputMessText {
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 22px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+	font-size: 16px;
+	text-align: center;
+}
+#labelInputEndMess {
+	display: inline-block;
+	width: 156px;
+	text-align: center;
+}
+#labelInputDuringMess {
+	display: inline-block;
+	width: 156px;
+	text-align: center;
+}
+.inputMessButton {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	font-size: 19px;
+	background-color: rgb(31, 30, 31);
+}
+.inputMessButton {
+	display: inline-block;
+}
+.buttonInput {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	font-size: 19px;
+	background-color: rgb(31, 30, 31);
+}
+#displayMess {
+	padding-top: 5px;
+}
+.buttonInput {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	font-size: 19px;
+	background-color: rgb(31, 30, 31);
+}
+.buttonAlign {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+}
+#fontSizeInput {
+	border: 0px;
+	border-radius: 2%;
+	color: white;
+	background-color: rgb(31, 30, 31);
+}
+#googleFontLink {
+	text-decoration: none;
+	color: white;
+}
+#googleFontLink:hover {
+	color: rgb(252, 211, 211);
+}
+.alignButtons {
+	height: 20px;
+	width: 20px;
+}
+#gap {
+	width: 60px;
+	height: 10px;
+}
+#right {
+	padding-right: 30px;
+}
+#bottomLine {
+	width: 100%;
+	height: 10px;
+	border-bottom: solid 1px white;
+}
+#midLine {
+	width: 100%;
+	height: 10px;
+	border-top: solid 1px white;
+}
+#aLine {
+	width: 100%;
+	height: 10px;
+}
+.drawLine {
+	width: 100%;
+	height: 0px;
+	border-top: solid 1px white;
+}
+.gapone {
+	width: 100%;
+	height: 1px;
+}
+.alignButtons {
+	cursor: pointer;
+}
+#settings:hover {
+	cursor: pointer;
+}
+.button:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.okButton:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+#settingsButton:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.MainTopSettingsButtons:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.buttonSettingsColor:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.buttonFontSettings:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.buttonInput:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
+.buttonAlign:hover {
+	background-color: rgb(50, 40, 50);
+	cursor: pointer;
+}
